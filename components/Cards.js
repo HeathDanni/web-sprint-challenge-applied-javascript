@@ -31,3 +31,12 @@ axios
     .catch((err) => {
         console.log(err);
     });
+
+    function cardCreator(article) {
+        const card = document.createElement('div');
+        const headline = document.createElement('div');
+        const author = document.createElement('div');
+        const imgContainer = document.createElement('div');
+        const image = document.createElement('img');
+        const authorName = document.createElement('span');
+    }
