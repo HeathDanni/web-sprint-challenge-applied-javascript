@@ -25,12 +25,17 @@ axios
         console.log(err);
     });
 
+    function topicMaker(res) {
+        const topicItem = document.createElement('div');
+        topicItem.textContent = res.el;
+        topicItem.classList.add('tab');
+        return topicItem;
+    }
+
     const topicList = document.querySelector('.topics');
 
-    resArray.forEach((el) =>{
-        const topicItem = document.createElement('div');
-        topicItem.textContent = el;
-        topicList.appendChild(topicItem);
+    resArray.map((el) => {
+        topicList.appendChild(topicMaker(resArray));
     });
 
   console.log(topicList);

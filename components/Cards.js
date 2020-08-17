@@ -53,7 +53,7 @@ axios
 
                 card.appendChild(headline);
                 card.appendChild(author);
-                author.appendChild(imgContainer, authorName);
+                author.appendChild(imgContainer);
                 author.appendChild(authorName);
                 imgContainer.appendChild(image);
 
