@@ -43,4 +43,9 @@ axios
         card.classList.add('card');
         headline.classList.add('headline');
         author.classList.add('author');
+
+        card.append(headline, author);
+        author.append(imgContainer, authorName);
+        imgContainer.append(image);
+
     }
