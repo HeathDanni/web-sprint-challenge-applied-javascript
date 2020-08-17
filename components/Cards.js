@@ -22,30 +22,46 @@
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
 import axios from 'axios'
-
+let dataArray = [];
 axios 
     .get(`https://lambda-times-api.herokuapp.com/articles`)
     .then((res) => {
         console.log(res);
+        dataArray = res.data;
+        console.log(dataArray);
     })
     .catch((err) => {
         console.log(err);
     });
 
-    function cardCreator(article) {
-        const card = document.createElement('div');
-        const headline = document.createElement('div');
-        const author = document.createElement('div');
-        const imgContainer = document.createElement('div');
-        const image = document.createElement('img');
-        const authorName = document.createElement('span');
+    function cardCreator(obj) {
+                const card = document.createElement('div');
+                const headline = document.createElement('div');
+                const author = document.createElement('div');
+                const imgContainer = document.createElement('div');
+                const image = document.createElement('img');
+                const authorName = document.createElement('span');
 
-        card.classList.add('card');
-        headline.classList.add('headline');
-        author.classList.add('author');
+                card.classList.add('card');
+                headline.classList.add('headline');
+                author.classList.add('author');
 
-        card.append(headline, author);
-        author.append(imgContainer, authorName);
-        imgContainer.append(image);
+                headline.textContent = 'headline';
+                image.src = '#';
+                authorName.textContent = 'authorName';
+                
 
+                card.appendChild(headline);
+                card.appendChild(author);
+                author.appendChild(imgContainer, authorName);
+                author.appendChild(authorName);
+                imgContainer.appendChild(image);
+
+        
+      return card;
     }
+
+    const cardsContainer = document.querySelector('.cards-container');
+
+    cardsContainer.appendChild(cardCreator());
+
