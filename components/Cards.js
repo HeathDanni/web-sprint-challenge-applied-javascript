@@ -23,18 +23,21 @@
 
 import axios from 'axios'
 let dataArray = [];
+const cardsContainer = document.querySelector('.cards-container');
+
 axios 
     .get(`https://lambda-times-api.herokuapp.com/articles`)
     .then((res) => {
         console.log(res);
-        dataArray = res.data;
+        dataArray = res.data.articles;
         console.log(dataArray);
-    })
+        cardCreator(dataArray);
+})
     .catch((err) => {
         console.log(err);
     });
 
-    function cardCreator(obj) {
+    function cardCreator(array) {
                 const card = document.createElement('div');
                 const headline = document.createElement('div');
                 const author = document.createElement('div');
@@ -46,9 +49,9 @@ axios
                 headline.classList.add('headline');
                 author.classList.add('author');
 
-                headline.textContent = 'headline';
+                headline.textContent = 'array.headline';
                 image.src = '#';
-                authorName.textContent = 'authorName';
+                authorName.textContent = `By array.authorName`;
                 
 
                 card.appendChild(headline);
@@ -57,11 +60,6 @@ axios
                 author.appendChild(authorName);
                 imgContainer.appendChild(image);
 
-        
-      return card;
-    }
-
-    const cardsContainer = document.querySelector('.cards-container');
-
-    cardsContainer.appendChild(cardCreator());
-
+                cardsContainer.appendChild(card);
+}
+    
