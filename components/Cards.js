@@ -31,6 +31,12 @@ axios
         console.log(res);
         dataArray = res.data.articles;
         console.log(dataArray);
+        let newArray = [];
+        for (let i = 0; i < dataArray.length; i++) {
+            for (let j = 0; j < dataArray[i].length; j++) {
+            newArray.push(dataArray[i][j]);
+        } console.log(newArray);
+    }
         cardCreator(dataArray);
 })
     .catch((err) => {
@@ -59,6 +65,10 @@ axios
                 author.appendChild(imgContainer);
                 author.appendChild(authorName);
                 imgContainer.appendChild(image);
+
+                card.addEventListener('click', (e) => {
+                    console.log(e.target.headline)
+                });
 
                 cardsContainer.appendChild(card);
 }
