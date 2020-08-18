@@ -72,8 +72,8 @@ axios
                 author.appendChild(authorName);
                 imgContainer.appendChild(image);
 
-                card.addEventListener('click', (e) => {
-                    console.log(e.target.headline)
+                card.addEventListener('click', () => {
+                    console.log(headline)
                 });
 
                 cardsContainer.appendChild(card);
