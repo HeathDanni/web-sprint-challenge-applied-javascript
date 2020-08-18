@@ -13,29 +13,33 @@
 import axios from 'axios';
 
 let resArray = [];
+const topicList = document.querySelector('.topics');
 axios
     .get(`https://lambda-times-api.herokuapp.com/topics`)
     .then((res) => {
         console.log(res);
         resArray = res.data.topics;
         console.log(resArray);
+        topicMaker(resArray);
     })
 
     .catch((err) => {
         console.log(err);
     });
 
-    function topicMaker(res) {
-        const topicItem = document.createElement('div');
-        topicItem.textContent = res.el;
-        topicItem.classList.add('tab');
-        return topicItem;
+    function topicMaker(array) {
+        for (let i = 0; i < array.length; i++) {
+            const topicItem = document.createElement('div');
+            topicItem.textContent = array[i];
+            topicItem.classList.add('tab');
+            topicList.appendChild(topicItem);
     }
+ }
+    
+    // const topicList = document.querySelector('.topics');
 
-    const topicList = document.querySelector('.topics');
-
-    resArray.map((el) => {
-        topicList.appendChild(topicMaker(resArray));
-    });
+    // resArray.map((el) => {
+    //     topicList.appendChild(topicMaker(resArray));
+    // });
 
   console.log(topicList);
