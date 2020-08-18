@@ -22,42 +22,48 @@
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
 import axios from 'axios'
+
 let dataArray = [];
+let articleArray = [];
+
 const cardsContainer = document.querySelector('.cards-container');
 
 axios 
     .get(`https://lambda-times-api.herokuapp.com/articles`)
     .then((res) => {
+
         console.log(res);
         dataArray = res.data.articles;
         console.log(dataArray);
-        let newArray = [];
-        for (let i = 0; i < dataArray.length; i++) {
-            for (let j = 0; j < dataArray[i].length; j++) {
-            newArray.push(dataArray[i][j]);
-        } console.log(newArray);
-    }
-        cardCreator(dataArray);
+        
+        articleArray = [...dataArray.javascript, ...dataArray.bootstrap, ...dataArray.jquery, ...dataArray.node, ...dataArray.technology,];
+
+        console.log(articleArray);
+ 
+        articleArray.forEach((el) => {
+            cardCreator(el);
+        })
 })
     .catch((err) => {
         console.log(err);
     });
 
-    function cardCreator(array) {
+    function cardCreator(data) {
                 const card = document.createElement('div');
                 const headline = document.createElement('div');
                 const author = document.createElement('div');
                 const imgContainer = document.createElement('div');
                 const image = document.createElement('img');
                 const authorName = document.createElement('span');
+                image.style.width = '90%';
 
                 card.classList.add('card');
                 headline.classList.add('headline');
                 author.classList.add('author');
 
-                headline.textContent = 'array.headline';
-                image.src = '#';
-                authorName.textContent = `By array.authorName`;
+                headline.textContent = data.headline;
+                image.src = data.authorPhoto;
+                authorName.textContent = `By ${data.authorName}`;
                 
 
                 card.appendChild(headline);
